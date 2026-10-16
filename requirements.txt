@@ -1,0 +1,9 @@
+ultralytics>=8.4
+torch>=2.0
+torchvision>=0.15
+opencv-python>=4.8
+numpy>=1.23
+pyyaml>=6.0
+matplotlib>=3.6
+albumentations>=1.3
+roboflow>=1.1        # only for rebuilding the dataset (tools/download_*.py)

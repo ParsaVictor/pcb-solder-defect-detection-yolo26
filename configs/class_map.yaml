@@ -1,0 +1,17 @@
+# Map every source's raw class name -> final class. null = drop the boxes of that class.
+# A source listed under `exclude_sources` is not used at all (different labelling meaning).
+final_classes: [missing_hole, mouse_bite]
+
+exclude_sources:
+  - theodor_pcb_holes        # labels EVERY via on the board (~70/img), not missing holes -> would conflict
+
+map:
+  missing hole: missing_hole
+  missing_hole: missing_hole
+  Missing_hole: missing_hole
+  Defect: missing_hole                          # nqvmy: only missing-hole images
+  PCB Holes - v4 2023-08-03 2-54pm: missing_hole  # eeproject: Roboflow project-name class, holds the missing holes
+  "- PCB Holes - 2026-05-13 9-27am": null       # kelly: empty placeholder class (0 boxes)
+  Miss: missing_hole                            # thanakorn: full-resolution PKU originals
+  mouse_bite: mouse_bite
+  PCB_HOLE: null

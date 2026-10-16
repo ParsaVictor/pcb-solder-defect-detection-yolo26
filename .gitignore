@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+.env
+*.key
+runs/
+data/
+final_*/
+*.zip
+# trained weights ARE committed on purpose: weights/*.pt

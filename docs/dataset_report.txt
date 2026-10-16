@@ -1,0 +1,20 @@
+Soldering / assembly defects (after assembly)
+=============================================
+classes: ['insufficient_solder', 'excess_solder', 'solder_bridge', 'solder_void', 'missing_component', 'shifted_component', 'burn', 'physical_damage', 'oxidation']
+
+source              images  groups  train/val/test images
+sssssc_assembly        826     487  619/103/104
+numeric123             762     175  571/96/95
+neazu_solder           158     157  118/20/20
+zurab_bga              166     143  166/0/0
+vattipalli              78      46  64/7/7
+cv_solder_splash        29       6  23/3/3
+
+split   files  empty insufficient_s  excess_solder  solder_bridge    solder_void missing_compon shifted_compon           burn physical_damag      oxidation
+train    3836    344           2370           1550           4160            794            948            450            450           1152            830
+val       687    433            187            111            181            104             74             31             31             15              0
+test      686    427            186            115            181             28             74             31             32             16              0
+
+excluded (excluded.csv has every file and its reason):
+      5  mirrored/rotated duplicate
+      4  train: defect-free image beyond the background cap

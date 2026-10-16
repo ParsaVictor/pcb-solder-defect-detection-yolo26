@@ -1,0 +1,65 @@
+# Two separate models, two datasets. Each source: class map (null = drop that class's boxes),
+# how to group images of the same physical board (regex on the file name, or "sift" = by image
+# content), files to exclude (with the reason), and files that may only be used for training.
+#
+# Sources NOT used (decided after the audit in data/audit/, see README_FA.md):
+#   ~20 PKU copies (newworkspace 10627, university 7971, animal 9471, gc10/orotayo/pcb-test 1386,
+#   the 693-image copies, iflytek, the 9 first missing-hole sets) - same 693 photos resized/cropped/augmented
+#   fedoration - pixel-identical to pku_tedpublic
+#   deeppcb_thesis - same DeepPCB images, 400 fewer originals
+#   placement - classes defect1..defect7 with unknown meaning, one board panel
+#   theodor - labels every via, not defects
+
+bare:
+  title: "PCB bare-board defects (before assembly)"
+  rot90_train: true      # every training file also as an exact 90-degree copy (twice the training data)
+  classes: [missing_hole, mouse_bite, open_circuit, short, spur, spurious_copper, pin_hole]
+  sources:
+    pku_tedpublic:          # 693 full-resolution photos, official PKU labels, 10 boards
+      map: {missing_hole: missing_hole, mouse_bite: mouse_bite, open_circuit: open_circuit, short: short,
+            spur: spur, spurious_copper: spurious_copper}
+      group: '^(\d{2})_'    # board number: 01_missing_hole_05 -> board 01
+    deeppcb:                # 1500 binarised 640px images from 11 scans
+      map: {open: open_circuit, short: short, mousebite: mouse_bite, spur: spur, copper: spurious_copper,
+            pin-hole: pin_hole}
+      group: '^(\d{5})'     # scan group: 00041127 -> 00041
+    aaa_hr:                 # web photos of many different boards; v1 (2048) cropped to the real photo, long side 1024 (tools/aaa_hr.py)
+      map: {Mouse_bite: mouse_bite, Open_circuit: open_circuit, Short: short, Spur: spur, Spurious_copper: spurious_copper}
+      group: '^((?:pcb|image)_\d+)'
+      train_only: '_rotated'   # rotated duplicate of another file: fine for training, would double-count in test
+
+solder:
+  title: "Soldering / assembly defects (after assembly)"
+  rot90_train: true      # every training file also as an exact 90-degree copy (twice the training data)
+  classes: [insufficient_solder, excess_solder, solder_bridge, solder_void, missing_component,
+            shifted_component, burn, physical_damage, oxidation]
+  sources:
+    sssssc_assembly:
+      map: {less_tin: insufficient_solder, more_tin: excess_solder, missing_parts: missing_component,
+            shifting: shifted_component, burn_down: burn, broken_circuit: physical_damage, damage: physical_damage}
+      group: '^(?:filp_)?(\d{4})_'   # board number: filp_0014_03 / 0014_03 -> 0014
+      train_only: '^filp_'           # mirrored duplicate of the photo without "filp_"
+    numeric123:
+      map: {Insufficient solder: insufficient_solder, Soldering bridge: solder_bridge, Soldering shorted: solder_bridge,
+            Missing component: missing_component, Burn: burn}
+      group: sift
+    neazu_solder:                    # 5472x3648, dark, few board designs
+      map: {solder_less: insufficient_solder, solder_more: excess_solder, solder_hole: solder_void, good: null}
+      group: '^([0-9A-Za-z]+)__'   # serial number = one physical board (only ~5 designs: by design nothing reaches test)
+    zurab_bga:
+      map: {Short circuit on the SMD component: solder_bridge, Short circuit on the BGA chip: solder_bridge,
+            Oxides on SMD components: oxidation, Oxides on BGA chips: oxidation,
+            The displacement of SMD components: shifted_component,
+            Connector defect: physical_damage, Cracks and chips on the BGA chip: physical_damage}
+      group: sift
+      train_only: '.'   # only an augmented export exists: every image is a 2x2 mosaic with cutout squares - train only, never judged in val/test
+    vattipalli:
+      map: {burn: burn, physical damage: physical_damage, rust-oxidation: oxidation}
+      group: sift
+      # AI-generated (Gemini / ChatGPT) and watermark-removed stock images are KEPT for training (more burn
+      # examples), but never used in val/test, so the score is measured on real photos only.
+      # The uploader's own rotated copies (-Copy-N-) are training-only too, so test never counts a photo twice.
+      train_only: 'Gemini_Generated_Image|ChatGPT-Image|[Ww]atermark|-Copy'
+    cv_solder_splash:
+      map: {excessive solder: excess_solder, solder splash: excess_solder}
+      group: sift

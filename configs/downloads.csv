@@ -1,0 +1,19 @@
+workspace,project,version,folder,why
+tedpublic,pcb-yxshf,1,pku_tedpublic,PKU 693 full-res originals - no resize no aug (core)
+fedoration,pcb-defects-alget,1,pku_fedoration,PKU 633 no resize no aug - second label copy for voting
+iflytek,pcb-hnkft,1,iflytek,4004 no resize no aug - 8 classes (scratch/pinhole/bump) - check if new boards
+motherboards,deeppcb-tangsanli5201,2,deeppcb,DeepPCB 1500 no resize no aug
+thesis-laxy4,yolov8-pcb-defects,4,deeppcb_thesis,1500 no resize - more boxes than DeepPCB - check
+sssssc,pcb-ryqxj,2,sssssc_assembly,826 no aug - solder less/more tin missing parts shifting burn
+test-neazu,test-pcb-pb80d,10,neazu_solder,158 no aug - good/solder_less/solder_more/solder_hole
+new-workspace-1wqsn,pcb-ubm0y,1,pku_aug_newworkspace,10627 no resize - check if derived from PKU
+university-2xdiy,pcb-defects-chi1b,2,pku_aug_university,7971 no resize - check if derived from PKU
+aaa-ufaws,pcb-luqzq,4,aaa,2538 projects imgs 512 - check source
+123-1fark,pcb-dp1zk,3,numeric123,1826 numeric classes - check meaning
+rf-projects,pcb-holes,5,rf_pcb_holes_v5,100 light_ crops no resize no aug
+nuu-f6yoy,pcb-pncrj,1,nuu_f6yoy,100 originals no resize (aug x3)
+vattipalli-srujan-24bec7102,pcb-defects-nnkpk,2,vattipalli,215 burn/damage/rust 512 stretch
+placement-2023-9jdtv,pcb-defects-eoadf,1,placement,608 defect1-7 unknown meaning - check
+computer-vision-mtu3i,pcb-defects-knpfy,1,cv_solder_splash,29 orig solder splash/excess (only aug version)
+zurab,defects-pcb,3,zurab_bga,86 orig BGA/SMD defects seg (only aug version)
+aaa-ufaws,pcb-luqzq,1,aaa_v1_2048,2048px version of aaa - check if it has more real detail than the 512px one
