@@ -1,0 +1,15 @@
+{
+ "global": 0.228,
+ "per_class": {
+  "insufficient_solder": 0.297,
+  "excess_solder": 0.349,
+  "solder_bridge": 0.417,
+  "solder_void": 0.249,
+  "missing_component": 0.381,
+  "shifted_component": 0.389,
+  "burn": 0.224,
+  "physical_damage": 0.214,
+  "oxidation": 0.228
+ },
+ "how": "confidence at the F1 maximum on val (classes with < 15 val boxes use the global one)"
+}

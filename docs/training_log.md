@@ -46,7 +46,7 @@ A display bug was also found: the panel reported "mosaic off" from epoch 33 beca
 | Old weights archived | the best weights of every earlier run are copied to `saved_weights/` on Drive, never overwritten |
 | `close_mosaic` | adaptive: `min(20, max(5, epochs // 7))` |
 
-**Result:** mAP@50-95 **0.648**, mAP@50 **0.904** on validation (v2: 0.182 / 0.357).
+**Result:** validation mAP@50 0.904 / mAP@50-95 0.648 (epoch 143 of 150); **test mAP@50 0.895 / mAP@50-95 0.657** (v2: 0.357 / 0.182 on validation).
 
 ## Data notes
 - ~1,557 unique real photos (1,918 files after tiling large photos; 3,836 with the 90° copies).
