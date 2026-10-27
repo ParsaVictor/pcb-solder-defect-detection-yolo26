@@ -14,6 +14,13 @@
 </p>
 
 <p align="center">
+  <a href="https://huggingface.co/ParsaVictor/pcb-solder-defect-detection-yolo26"><img src="https://img.shields.io/badge/🤗%20Hugging%20Face-model-yellow.svg" alt="Hugging Face Model"></a>
+  <a href="https://huggingface.co/datasets/ParsaVictor/pcb-solder-defect-detection"><img src="https://img.shields.io/badge/🤗%20Hugging%20Face-dataset-yellow.svg" alt="Hugging Face Dataset"></a>
+  <a href="https://huggingface.co/ParsaVictor/pcb-inspection-suite"><img src="https://img.shields.io/badge/🤗%20Hugging%20Face-full%20suite-yellow.svg" alt="Hugging Face Suite"></a>
+  <a href="https://huggingface.co/ParsaVictor"><img src="https://img.shields.io/badge/🤗%20Hugging%20Face-profile-blue.svg" alt="Hugging Face Profile"></a>
+</p>
+
+<p align="center">
   <img src="assets/predictions.jpg" alt="YOLO26 solder defect detection on held-out PCB photos: insufficient solder, solder bridges, missing and shifted components, excess solder and a burn detected with bounding boxes" width="100%">
   <br><em>Predictions on <b>test</b> photos the model never saw in training or model selection. Thin green boxes = ground truth.</em>
 </p>
